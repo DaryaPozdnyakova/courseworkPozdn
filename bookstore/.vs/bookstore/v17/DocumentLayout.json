@@ -1,0 +1,190 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|d:\\\u0432\u0443\u0437\\\u0432\u0443\u0437 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|solutionrelative:bookstore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|d:\\\u0432\u0443\u0437\\\u0432\u0443\u0437 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\bookstore.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|solutionrelative:bookstore\\bookstore.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|d:\\\u0432\u0443\u0437\\\u0432\u0443\u0437 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|solutionrelative:bookstore\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|d:\\\u0432\u0443\u0437\\\u0432\u0443\u0437 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|solutionrelative:bookstore\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|d:\\\u0432\u0443\u0437\\\u0432\u0443\u0437 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|solutionrelative:bookstore\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|d:\\\u0432\u0443\u0437\\\u0432\u0443\u0437 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|solutionrelative:bookstore\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|d:\\\u0432\u0443\u0437\\\u0432\u0443\u0437 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|solutionrelative:bookstore\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|d:\\\u0432\u0443\u0437\\\u0432\u0443\u0437 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|solutionrelative:bookstore\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|d:\\\u0432\u0443\u0437\\\u0432\u0443\u0437 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|solutionrelative:bookstore\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|d:\\\u0432\u0443\u0437\\\u0432\u0443\u0437 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4F420F8-59C4-4B0A-8AE7-984440EA71A7}|bookstore\\bookstore.csproj|solutionrelative:bookstore\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "bookstore",
+              "DocumentMoniker": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\bookstore.csproj",
+              "RelativeDocumentMoniker": "bookstore\\bookstore.csproj",
+              "ToolTip": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\bookstore.csproj",
+              "RelativeToolTip": "bookstore\\bookstore.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-04T16:44:16.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "bookstore\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "bookstore\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAoAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-04T16:05:07.366Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "bookstore\\Views\\Shared\\Error.cshtml",
+              "ToolTip": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "bookstore\\Views\\Shared\\Error.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-04T16:05:04.411Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "bookstore\\Views\\_ViewStart.cshtml",
+              "ToolTip": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "bookstore\\Views\\_ViewStart.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-04T16:05:01.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "bookstore\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "bookstore\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T16:04:55.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "bookstore\\Views\\_ViewImports.cshtml",
+              "ToolTip": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "bookstore\\Views\\_ViewImports.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-04T16:04:50.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "bookstore\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "bookstore\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-04T16:04:14.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Program.cs",
+              "RelativeDocumentMoniker": "bookstore\\Program.cs",
+              "ToolTip": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Program.cs",
+              "RelativeToolTip": "bookstore\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T16:03:36.411Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "bookstore\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "bookstore\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-04T16:05:06.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "bookstore\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\\u0412\u0423\u0417\\\u0412\u0423\u0417 2023-2024\\4 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430\\bookstore\\bookstore\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "bookstore\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-04T16:04:11.483Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
