@@ -1,0 +1,198 @@
+﻿@using Newtonsoft.Json
+@model IEnumerable<bookstore.Models.Book>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Моя корзина</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .card-body {
+            display: flex;
+            align-items: center;
+        }
+
+        .card-img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-remove {
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .container {
+            margin-bottom: 50px;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cart-header">
+            <h1>Моя корзина</h1>
+            <button id="clear-cart-btn" class="btn btn-danger">Очистить корзину</button>
+        </div>
+
+        <div id="cart-items">
+            @if (!Model.Any())
+            {
+                <div class="no-books col-12">
+                    <h3>Ваша корзина пуста.</h3>
+                    <p>Добавьте книги из каталога.</p>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    @foreach (var book in Model)
+                    {
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    @if (book.BookImage != null && book.BookImage.Length > 0)
+                                    {
+                                        var base64 = Convert.ToBase64String(book.BookImage);
+                                        <img class="card-img" src="data:image/jpg;base64,@base64" alt="Book Image" />
+                                    }
+                                    else
+                                    {
+                                        <img class="card-img" src="https://via.placeholder.com/100" alt="No Image Available" />
+                                    }
+                                    <div class="cart-item-details">
+                                        <h5>@book.Title</h5>
+                                        <p>@book.NameAuthor</p>
+                                        <p>@book.Price ₽</p>
+                                    </div>
+                                    <form asp-action="RemoveFromCart" asp-route-id="@book.Id" method="post">
+                                        <button type="submit" class="btn btn-danger cart-item-remove">Удалить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <button id="place-order-btn" class="btn btn-primary">Оформить заказ</button>
+            }
+        </div>
+    </div>
+
+    <!-- Модальное окно для оформления заказа -->
+    <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderModalLabel">Оформление заказа</h5>
+                    <button type="button" class="close" onclick="$('#orderModal').modal('hide');" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="order-form">
+                        <div class="form-group">
+                            <label for="address">Адрес доставки</label>
+                            <input type="text" class="form-control" id="address" name="address" required>
+                        </div>
+                        <div id="order-summary"></div>
+                        <button type="submit" class="btn btn-primary">Заказать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#clear-cart-btn').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '@Url.Action("ClearCart", "Account")',
+                    type: 'POST',
+                    success: function (result) {
+                        if (result.success) {
+                            $('#cart-items').html('<div class="no-books col-12"><h3>Ваша корзина пуста.</h3><p>Добавьте книги из каталога.</p></div>');
+                        } else {
+                            alert('Ошибка при очистке корзины.');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Ошибка при очистке корзины: ' + xhr.responseText);
+                    }
+                });
+            });
+
+            $('#place-order-btn').click(function () {
+                var cartItems = @Html.Raw(JsonConvert.SerializeObject(Model));
+                var totalAmount = 0;
+
+                var orderSummaryHtml = '<h5>Ваш заказ</h5><ul>';
+                cartItems.forEach(function (item) {
+                    totalAmount += item.Price;
+                    orderSummaryHtml += '<li>' + item.Title + ' - ' + item.Price + ' ₽</li>';
+                });
+                orderSummaryHtml += '</ul><p>Итоговая сумма: ' + totalAmount + ' ₽</p>';
+
+                $('#order-summary').html(orderSummaryHtml);
+                $('#orderModal').modal('show');
+            });
+
+            $('#order-form').submit(function (e) {
+                e.preventDefault();
+                var address = $('#address').val();
+
+                $.ajax({
+                    url: '@Url.Action("CreateOrder", "Account")',
+                    type: 'POST',
+                    data: { address: address },
+                    success: function (result) {
+                        if (result.success) {
+                            alert('Заказ успешно оформлен.');
+                            window.location.href = '@Url.Action("UserCart", "Account")';
+                        } else {
+                            alert('Ошибка при оформлении заказа.');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Ошибка при оформлении заказа: ' + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+

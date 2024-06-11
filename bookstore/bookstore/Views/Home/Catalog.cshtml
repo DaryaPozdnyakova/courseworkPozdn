@@ -1,0 +1,230 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<bookstore.Models.Book>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Каталог</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .book-card {
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 300px;
+            height: 500px;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+
+            .img-container img {
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+            }
+
+        .book-card-title {
+            font-size: 1.2em;
+            margin: 10px 0;
+            cursor: pointer;
+            color: blue;
+        }
+
+        .book-card-author {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .book-card-price {
+            color: green;
+            font-weight: bold;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .no-books {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+            .no-books h3, .no-books p {
+                margin: 10px 0;
+            }
+
+        .btn-remove {
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-wrapper {
+            display: flex;
+            justify-content: center; 
+            width: 100%;
+        }
+
+        .footer-margin {
+            margin-bottom: 100px; 
+        }
+
+        .spacer {
+            height: 50px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Каталог</h1>
+        <form method="get" asp-action="Catalog" class="form-inline mb-3">
+            <div class="form-group mr-2">
+                <input type="text" class="form-control" name="searchString" placeholder="Введите название книги или имя автора" value="@ViewData["CurrentFilter"]" style="width: 300px;" />
+            </div>
+            <button type="submit" class="btn btn-primary">Поиск</button>
+        </form>
+        <div class="row">
+            @if (!Model.Any())
+            {
+                <div class="no-books col-12">
+                    <h3>Такой книги, к сожалению, у нас нет :(</h3>
+                    <p>Мы работаем над тем, чтобы она появилась в нашем ассортименте.</p>
+                </div>
+            }
+            else
+            {
+                @foreach (var book in Model)
+                {
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="card book-card">
+                            <div class="img-container">
+                                @if (book.BookImage != null && book.BookImage.Length > 0)
+                                {
+                                    var base64 = Convert.ToBase64String(book.BookImage);
+                                    var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                                    <img src="@imgSrc" alt="Book Image" class="card-img-top" />
+                                }
+                                else
+                                {
+                                    <img src="https://via.placeholder.com/150" alt="No Image Available" class="card-img-top" />
+                                }
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div>
+                                    <h5 class="card-title book-card-title" data-id="@book.Id">@book.Title</h5>
+                                    <p class="card-text book-card-author">@book.NameAuthor</p>
+                                    <p class="card-text book-card-price">@book.Price ₽</p>
+                                </div>
+                                <div class="mt-auto d-flex justify-content-between align-items-center">
+                                    <div class="btn-wrapper">
+                                        @if (HttpContextAccessor.HttpContext.Session.GetObjectFromJson<List<int>>("Cart")?.Contains(book.Id) ?? false)
+                                        {
+                                            <form class="remove-from-cart-form mt-2" data-id="@book.Id" method="post">
+                                                <button type="submit" class="btn btn-danger btn-remove">Удалить из корзины</button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form class="add-to-cart-form mt-2" data-id="@book.Id" method="post">
+                                                <button type="submit" class="btn btn-primary">Добавить в корзину</button>
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="spacer"></div>
+    <script>
+        $(document).ready(function () {
+            $('.book-card-title').click(function () {
+                var bookId = $(this).data('id');
+                window.location.href = '@Url.Action("BookDetails", "Home")' + '/' + bookId;
+            });
+
+            $('.add-to-cart-form').submit(function (e) {
+                e.preventDefault();
+
+                var form = $(this);
+                var bookId = form.data('id');
+
+                $.ajax({
+                    url: '@Url.Action("AddToCart", "Account")',
+                    type: 'POST',
+                    data: { id: bookId },
+                    success: function (response) {
+                        if (response.success) {
+                            form.replaceWith('<form class="remove-from-cart-form mt-2" data-id="' + bookId + '" method="post"><button type="submit" class="btn btn-danger btn-remove">Удалить из корзины</button></form>');
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 401) {
+                            alert(xhr.responseJSON.message);
+                        } else {
+                            alert('Произошла ошибка. Пожалуйста, попробуйте снова.');
+                        }
+                    }
+                });
+            });
+
+            $(document).on('submit', '.remove-from-cart-form', function (e) {
+                e.preventDefault();
+
+                var form = $(this);
+                var bookId = form.data('id');
+
+                $.ajax({
+                    url: '@Url.Action("RemoveFromCart", "Account")',
+                    type: 'POST',
+                    data: { id: bookId },
+                    success: function (response) {
+                        if (response.success) {
+                            form.replaceWith('<form class="add-to-cart-form mt-2" data-id="' + bookId + '" method="post"><button type="submit" class="btn btn-primary">Добавить в корзину</button></form>');
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Произошла ошибка. Пожалуйста, попробуйте снова.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

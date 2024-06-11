@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ВУЗ\\ВУЗ 2023-2024\\4 семестр\\Курсовая работа\\bookstore\\bookstore\\bookstore.csproj": {}
+    "D:\\ВУЗ\\ВУЗ 2023-2024\\4 семестр\\Курсовая работа\\bookstorev2\\bookstore\\bookstore.csproj": {}
   },
   "projects": {
-    "D:\\ВУЗ\\ВУЗ 2023-2024\\4 семестр\\Курсовая работа\\bookstore\\bookstore\\bookstore.csproj": {
+    "D:\\ВУЗ\\ВУЗ 2023-2024\\4 семестр\\Курсовая работа\\bookstorev2\\bookstore\\bookstore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ВУЗ\\ВУЗ 2023-2024\\4 семестр\\Курсовая работа\\bookstore\\bookstore\\bookstore.csproj",
+        "projectUniqueName": "D:\\ВУЗ\\ВУЗ 2023-2024\\4 семестр\\Курсовая работа\\bookstorev2\\bookstore\\bookstore.csproj",
         "projectName": "bookstore",
-        "projectPath": "D:\\ВУЗ\\ВУЗ 2023-2024\\4 семестр\\Курсовая работа\\bookstore\\bookstore\\bookstore.csproj",
+        "projectPath": "D:\\ВУЗ\\ВУЗ 2023-2024\\4 семестр\\Курсовая работа\\bookstorev2\\bookstore\\bookstore.csproj",
         "packagesPath": "C:\\Users\\Pozdn\\.nuget\\packages\\",
-        "outputPath": "D:\\ВУЗ\\ВУЗ 2023-2024\\4 семестр\\Курсовая работа\\bookstore\\bookstore\\obj\\",
+        "outputPath": "D:\\ВУЗ\\ВУЗ 2023-2024\\4 семестр\\Курсовая работа\\bookstorev2\\bookstore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\VS package\\NuGetPackages"
@@ -50,6 +50,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "EFCore.AutomaticMigrations.NetTopologySuite": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.6, )"
@@ -58,11 +66,23 @@
               "target": "Package",
               "version": "[8.0.6, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.6, )"
             },
@@ -78,6 +98,14 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "Microsoft.SqlServer.Server": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[8.0.3, )"
@@ -89,6 +117,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.4, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL.Design": {
+              "target": "Package",
+              "version": "[1.1.0, )"
             }
           },
           "imports": [

@@ -1,0 +1,396 @@
+﻿@model bookstore.Models.ProfileViewModel
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .profile-container {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            display: flex;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .favorite-books, .orders {
+            margin-top: 20px;
+        }
+
+        .favorite-book, .order-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+            .favorite-book img, .order-item img {
+                width: 50px;
+                height: 50px;
+                object-fit: cover;
+                margin-right: 10px;
+            }
+
+        .btn-danger {
+            color: white;
+            margin-left: auto;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            width: 100%;
+        }
+
+        .menu {
+            position: relative;
+            width: 200px;
+            margin-right: 20px;
+        }
+
+        .menu-item {
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+            .menu-item .btn {
+                flex-grow: 1;
+                text-align: left;
+                padding-left: 20px;
+            }
+
+        .profile-layout {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .btn-favorites, .btn-edit-profile, .btn-change-avatar, .btn-change-password, .btn-orders {
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .order-item-details {
+            flex-grow: 1;
+        }
+
+        .order-cancel-button {
+            margin-left: 10px;
+        }
+
+        .content-footer-spacing {
+            padding-bottom: 100px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="container content-footer-spacing">
+        <h2 class="text-center my-4">Личный кабинет</h2>
+        <div class="profile-layout">
+            <div class="menu">
+                <div class="menu-item">
+                    <button id="btn-favorites" class="btn btn-primary btn-favorites">Избранное</button>
+                </div>
+                <div class="menu-item">
+                    <a href="@Url.Action("EditProfile", "Account")" class="btn btn-primary btn-edit-profile">Изменить данные</a>
+                </div>
+                <div class="menu-item">
+                    <button id="btn-change-avatar" class="btn btn-primary btn-change-avatar">Изменить аватар</button>
+                </div>
+                <div class="menu-item">
+                    <button id="btn-change-password" class="btn btn-primary btn-change-password" data-toggle="modal" data-target="#changePasswordModal">Изменить пароль</button>
+                </div>
+                <div class="menu-item">
+                    <button id="btn-orders" class="btn btn-primary btn-orders">Заказы</button>
+                </div>
+            </div>
+            <div class="profile-container shadow p-3 mb-5 bg-white rounded">
+                <div class="profile-header">
+                    <img src="@(Model.User.Avatar != null ? $"data:image/png;base64,{Convert.ToBase64String(Model.User.Avatar)}" : "https://via.placeholder.com/150")" alt="Avatar" class="profile-avatar" />
+                    <div class="profile-info">
+                        <p><strong>Email:</strong> @Model.User.Email</p>
+                        <p><strong>Полное имя:</strong> @Model.User.FullName</p>
+                        <p><strong>Номер телефона:</strong> @Model.User.PhoneNumber</p>
+                        <p><strong>Дата рождения:</strong> @(Model.User.BirthDate.HasValue ? Model.User.BirthDate.Value.ToString("dd.MM.yyyy") : "Не указана")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="favorite-books-container" class="favorite-books d-none">
+            <h3>Избранные товары</h3>
+            @if (!Model.FavoriteBooks.Any())
+            {
+                <p>Тут пока пусто</p>
+            }
+            else
+            {
+                @foreach (var book in Model.FavoriteBooks)
+                {
+                    <div class="favorite-book" data-id="@book.Id">
+                        <img src="@(book.BookImage != null && book.BookImage.Length > 0 ? $"data:image/png;base64,{Convert.ToBase64String(book.BookImage)}" : "https://via.placeholder.com/50")" alt="@book.Title" />
+                        <div>
+                            <a href="@Url.Action("BookDetails", "Home", new { id = book.Id })"><strong>@book.Title</strong></a>
+                            <p>@book.NameAuthor</p>
+                            <p>@book.Price.ToString("C")</p>
+                        </div>
+                        <button class="btn btn-danger btn-remove-favorite" data-id="@book.Id">Удалить</button>
+                    </div>
+                }
+            }
+        </div>
+        <div id="orders-container" class="orders d-none">
+            <h3>Мои заказы</h3>
+            @if (!Model.Orders.Any())
+            {
+                <p>У вас нет заказов.</p>
+            }
+            else
+            {
+                <div class="list-group">
+                    @foreach (var order in Model.Orders)
+                    {
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Заказ №@order.Id</h5>
+                                <small>@(order.OrderDate.ToString("dd.MM.yyyy") ?? "Не указана")</small>
+                            </div>
+                            <p class="mb-1">Сумма заказа: @order.TotalPrice ₽</p>
+                            <small>Адрес доставки: @order.Address</small>
+                            @foreach (var item in order.OrderItems)
+                            {
+                                <div class="order-item">
+                                    <img src="@(item.Book.BookImage != null && item.Book.BookImage.Length > 0 ? $"data:image/png;base64,{Convert.ToBase64String(item.Book.BookImage)}" : "https://via.placeholder.com/50")" alt="@item.Book.Title" />
+                                    <div class="order-item-details">
+                                        <a href="@Url.Action("BookDetails", "Home", new { id = item.Book.Id })"><strong>@item.Book.Title</strong></a>
+                                        <p>Автор: @item.Book.NameAuthor</p>
+                                        <p>Количество: @item.Quantity</p>
+                                        <p>Цена: @item.Price.ToString("C")</p>
+                                    </div>
+                                </div>
+                            }
+                            <button class="btn btn-danger order-cancel-button" data-id="@order.Id">Отменить заказ</button>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <!-- Change Password Modal -->
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePasswordModalLabel">Изменить пароль</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="change-password-form">
+                            <div class="form-group">
+                                <label for="currentPassword">Текущий пароль</label>
+                                <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Новый пароль</label>
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="showNewPassword">
+                                    <label class="form-check-label" for="showNewPassword">Показать новый пароль</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Подтвердите новый пароль</label>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="showConfirmPassword">
+                                    <label class="form-check-label" for="showConfirmPassword">Показать подтверждение пароля</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#btn-favorites').on('click', function () {
+                $('#favorite-books-container').toggleClass('d-none');
+                $('#orders-container').addClass('d-none');
+            });
+
+            $('#btn-orders').on('click', function () {
+                $('#orders-container').toggleClass('d-none');
+                $('#favorite-books-container').addClass('d-none');
+            });
+
+            $(document).on('click', '.btn-remove-favorite', function () {
+                var button = $(this);
+                var bookId = button.data('id');
+
+                $.ajax({
+                    url: '@Url.Action("RemoveFromFavorites", "Account")',
+                    type: 'POST',
+                    data: { bookId: bookId },
+                    success: function (response) {
+                        if (response.success) {
+                            button.closest('.favorite-book').remove();
+                            if ($('#favorite-books-container').children().length === 1) {
+                                $('#favorite-books-container').append('<p>Тут пока пусто</p>');
+                            }
+                            alert('Товар успешно удален из избранного.');
+                        } else {
+                            alert('Ошибка: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Произошла ошибка при удалении товара из избранного: ' + xhr.responseText);
+                    }
+                });
+            });
+
+            $(document).on('click', '.order-cancel-button', function () {
+                var button = $(this);
+                var orderId = button.data('id');
+
+                $.ajax({
+                    url: '@Url.Action("CancelOrder", "Account")',
+                    type: 'POST',
+                    data: { orderId: orderId },
+                    success: function (response) {
+                        if (response.success) {
+                            button.closest('.list-group-item').remove();
+                            alert('Заказ успешно отменен.');
+                        } else {
+                            alert('Ошибка: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Произошла ошибка при отмене заказа: ' + xhr.responseText);
+                    }
+                });
+            });
+
+            $('#change-password-form').on('submit', function (event) {
+                event.preventDefault();
+
+                var form = $(this);
+                var formData = form.serialize();
+
+                $.ajax({
+                    url: '@Url.Action("ChangePassword", "Account")',
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Пароль успешно изменен.');
+                            $('#changePasswordModal').modal('hide');
+                            form[0].reset();
+                        } else {
+                            alert('Ошибка: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Произошла ошибка при изменении пароля: ' + xhr.responseText);
+                    }
+                });
+            });
+
+            $('#btn-change-avatar').click(function () {
+                var fileInput = $('<input type="file">');
+                fileInput.change(function () {
+                    var file = this.files[0];
+                    var formData = new FormData();
+                    formData.append('avatar', file);
+
+                    $.ajax({
+                        url: '@Url.Action("ChangeAvatar", "Account")',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            alert('Аватар успешно изменен.');
+                            $('.profile-avatar').attr('src', response.avatarUrl);
+                        },
+                        error: function (xhr, status, error) {
+                            alert('Произошла ошибка при загрузке аватара: ' + xhr.responseText);
+                        }
+                    });
+                });
+
+                fileInput.trigger('click');
+            });
+
+            $('#showNewPassword').on('change', function () {
+                $('#newPassword').attr('type', this.checked ? 'text' : 'password');
+            });
+
+            $('#showConfirmPassword').on('change', function () {
+                $('#confirmPassword').attr('type', this.checked ? 'text' : 'password');
+            });
+
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

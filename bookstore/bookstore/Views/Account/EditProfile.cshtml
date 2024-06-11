@@ -1,0 +1,49 @@
+﻿@model bookstore.Models.EditProfile
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изменить данные профиля</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="container footer-margin">
+        <h2 class="text-center my-4">Изменить данные профиля</h2>
+        <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="UserId" value="@Model.UserId">
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email">
+            </div>
+            <div class="form-group">
+                <label for="FullName">Полное имя</label>
+                <input type="text" class="form-control" id="FullName" name="FullName" value="@Model.FullName">
+            </div>
+            <div class="form-group">
+                <label for="PhoneNumber">Номер телефона</label>
+                <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" value="@Model.PhoneNumber">
+            </div>
+            <div class="form-group">
+                <label for="BirthDate">Дата рождения</label>
+                <input type="date" class="form-control" id="BirthDate" name="BirthDate" value="@Model.BirthDate?.ToString("yyyy-MM-dd")">
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

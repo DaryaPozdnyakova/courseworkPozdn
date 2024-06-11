@@ -1,0 +1,56 @@
+﻿@model bookstore.Models.Book
+
+<h1>@Model.Title</h1>
+
+@if (Model.BookImage != null && Model.BookImage.Length > 0)
+{
+    <img src="data:image/png;base64,@Convert.ToBase64String(Model.BookImage)" alt="@Model.Title" />
+}
+else
+{
+    <img src="path/to/default/image.png" alt="@Model.Title" />
+}
+
+<p>@Model.Description</p>
+<p>Цена: @Model.Price.ToString("C")</p>
+
+<button class="btn btn-success" onclick="addToCart(@Model.Id)">Добавить в корзину</button>
+<button class="btn btn-danger" onclick="removeFromCart(@Model.Id)">Убрать из корзины</button>
+<button class="btn btn-info" onclick="addToFavorites(@Model.Id)">Добавить в избранное</button>
+<button class="btn btn-warning" onclick="removeFromFavorites(@Model.Id)">Убрать из избранного</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function addToCart(bookId) {
+        $.post('/Books/AddToCart', { bookId: bookId }, function (data) {
+            alert('Книга добавлена в корзину');
+        }).fail(function () {
+            alert('Ошибка при добавлении книги в корзину');
+        });
+    }
+
+    function removeFromCart(bookId) {
+        $.post('/Books/RemoveFromCart', { bookId: bookId }, function (data) {
+            alert('Книга удалена из корзины');
+        }).fail(function () {
+            alert('Ошибка при удалении книги из корзины');
+        });
+    }
+
+    function addToFavorites(bookId) {
+        $.post('/Books/AddToFavorites', { bookId: bookId }, function (data) {
+            alert('Книга добавлена в избранное');
+        }).fail(function () {
+            alert('Ошибка при добавлении книги в избранное');
+        });
+    }
+
+    function removeFromFavorites(bookId) {
+        $.post('/Books/RemoveFromFavorites', { bookId: bookId }, function (data) {
+            alert('Книга удалена из избранного');
+        }).fail(function () {
+            alert('Ошибка при удалении книги из избранного');
+        });
+    }
+</script>
+

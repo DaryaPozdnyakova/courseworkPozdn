@@ -1,0 +1,209 @@
+﻿@model bookstore.Models.Book
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Детали книги</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .book-details-container {
+            display: flex;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .book-image {
+            flex: 1;
+            text-align: center;
+        }
+
+            .book-image img {
+                max-width: 100%;
+                max-height: 300px;
+                border-radius: 10px;
+            }
+
+        .book-info {
+            flex: 2;
+            padding-left: 20px;
+        }
+
+        .book-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .book-author {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .book-description {
+            margin-bottom: 20px;
+        }
+
+        .book-price {
+            font-size: 1.2em;
+            color: green;
+            margin-bottom: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            align-items: center;
+        }
+
+            .button-group .btn {
+                width: 200px;
+                margin-right: 10px;
+            }
+
+        .btn-primary, .btn-danger {
+            width: 200px;
+            margin-right: 10px;
+        }
+
+        .footer-margin {
+            margin-bottom: 100px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="book-details-container">
+            <div class="book-image">
+                @if (Model.BookImage != null && Model.BookImage.Length > 0)
+                {
+                    var base64 = Convert.ToBase64String(Model.BookImage);
+                    var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                    <img src="@imgSrc" alt="Book Image" />
+                }
+                else
+                {
+                    <img src="https://via.placeholder.com/300" alt="No Image Available" />
+                }
+            </div>
+            <div class="book-info">
+                <h2 class="book-title">@Model.Title</h2>
+                <p class="book-author">Автор: @Model.NameAuthor</p>
+                <p class="book-description">@Model.Description</p>
+                <p class="book-price">@Model.Price ₽</p>
+                <div class="button-group">
+                    @if (HttpContextAccessor.HttpContext.Session.GetObjectFromJson<List<int>>("Cart")?.Contains(Model.Id) ?? false)
+                    {
+                        <form class="remove-from-cart-form" data-id="@Model.Id" method="post">
+                            <button type="submit" class="btn btn-danger btn-remove">Удалить из корзины</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form class="add-to-cart-form" data-id="@Model.Id" method="post">
+                            <button type="submit" class="btn btn-primary">Добавить в корзину</button>
+                        </form>
+                    }
+
+                    @{
+                        var userId = HttpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                        var isFavorite = userId != null && Model.FavoriteBooks.Any(fb => fb.UserId == int.Parse(userId));
+                    }
+                    <button id="favoriteButton" class="btn @(isFavorite ? "btn-danger" : "btn-primary")" onclick="toggleFavorite(@Model.Id)">
+                        @(isFavorite ? "Удалить из избранного" : "Добавить в избранное")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.add-to-cart-form').submit(function (e) {
+                e.preventDefault();
+
+                var form = $(this);
+                var bookId = form.data('id');
+
+                $.ajax({
+                    url: '@Url.Action("AddToCart", "Account")',
+                    type: 'POST',
+                    data: { id: bookId },
+                    success: function (response) {
+                        if (response.success) {
+                            form.replaceWith('<form class="remove-from-cart-form" data-id="' + bookId + '" method="post"><button type="submit" class="btn btn-danger btn-remove">Удалить из корзины</button></form>');
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 401) {
+                            alert(xhr.responseJSON.message);
+                        } else {
+                            alert('Произошла ошибка. Пожалуйста, попробуйте снова.');
+                        }
+                    }
+                });
+            });
+
+            $(document).on('submit', '.remove-from-cart-form', function (e) {
+                e.preventDefault();
+
+                var form = $(this);
+                var bookId = form.data('id');
+
+                $.ajax({
+                    url: '@Url.Action("RemoveFromCart", "Account")',
+                    type: 'POST',
+                    data: { id: bookId },
+                    success: function (response) {
+                        if (response.success) {
+                            form.replaceWith('<form class="add-to-cart-form" data-id="' + bookId + '" method="post"><button type="submit" class="btn btn-primary">Добавить в корзину</button></form>');
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function (xhr) {
+                        alert('Произошла ошибка. Пожалуйста, попробуйте снова.');
+                    }
+                });
+            });
+        });
+
+        function toggleFavorite(bookId) {
+            var url = '';
+            var action = '';
+            var button = document.getElementById('favoriteButton');
+
+            if (button.innerHTML.trim() === 'Добавить в избранное') {
+                url = '@Url.Action("AddToFavorites", "Home")';
+                action = 'Удалить из избранного';
+            } else {
+                url = '@Url.Action("RemoveFromFavorites", "Home")';
+                action = 'Добавить в избранное';
+            }
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: { bookId: bookId },
+                success: function (response) {
+                    if (response.success) {
+                        button.innerHTML = action;
+                        button.className = (action === 'Удалить из избранного') ? 'btn btn-danger' : 'btn btn-primary';
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    alert('Произошла ошибка. Пожалуйста, попробуйте снова.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
